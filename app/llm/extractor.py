@@ -52,39 +52,40 @@ def generate_answer(query: str, context: list):
     Sends the User Query + Graph Context to the LLM to generate a natural answer.
     """
     if not context:
-        return "I couldn't find any relevant information in the Knowledge Graph."
+        return "I don't know based on the current data."
 
     # Turn list of strings into a single block of text
     context_str = "\n".join(context)
     
+    # BALANCED PROMPT
     prompt = f"""
-    You are a helpful assistant answering questions based on a Knowledge Graph.
-    
-    Context from the Graph:
+    Context:
     {context_str}
     
     User Question: {query}
     
     Instructions:
-    1. Answer the question using ONLY the context provided.
-    2. If the context doesn't contain the answer, say "I don't know based on the current data."
-    3. Keep the answer concise.
+    1. Answer the question in a **complete, natural sentence**.
+    2. Do NOT use introductory filler like "Based on the context", "The data indicates", or "According to the graph".
+    3. Do NOT just output a single word (e.g., instead of "Starship", say "SpaceX is going to launch Starship").
+    4. Combine relevant details if possible (e.g., mention the location if it is in the context).
     """
     
     try:
         response = client.chat.completions.create(
             model=MODEL_ID,
             messages=[
-                {"role": "system", "content": "You are a helpful AI assistant."},
+                # Changed system role to encourage natural speech
+                {"role": "system", "content": "You are a direct and helpful assistant. You answer using full sentences."},
                 {"role": "user", "content": prompt}
             ],
-            temperature=0.5,
-            max_tokens=200
+            temperature=0.3, # Slight increase to allow better sentence structure
+            max_tokens=150
         )
-        return response.choices[0].message.content
+        return response.choices[0].message.content.strip()
     except Exception as e:
-        return f"Error generating answer: {e}"
-    
+        return f"Error: {e}"
+
 
 
 def extract_search_term(user_query: str):
