@@ -1,0 +1,9 @@
+# Python dependencies
+fastapi
+uvicorn
+kafka-python
+neo4j
+pydantic
+python-dotenv
+pandas
+huggingface_hub
