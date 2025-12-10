@@ -1,3 +1,4 @@
 Run inside streaming-kg - 
 Terminal 1 :- uvicorn app.main:app --reload
 Terminal 2 :- python -m app.kafka.consumer
+Terminal 3 :- docker-compose up -d , docker ps

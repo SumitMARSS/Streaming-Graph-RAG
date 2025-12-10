@@ -39,8 +39,8 @@ services:
     environment:
       NEO4J_AUTH: neo4j/password123  # Sets username=neo4j, password=password123
       NEO4J_PLUGINS: '["apoc", "graph-data-science"]' # Pre-installs useful plugins
-    volumes:
-      - ./neo4j_data:/data  # Persists your data so it doesn't vanish when you stop Docker
+    # volumes:
+    #   - ./neo4j_data:/data  # Persists your data so it doesn't vanish when you stop Docker
 
   # 4. (Optional) Kafka UI - Visualizer for your streams
   # highly recommended for debugging to see if messages are actually arriving
