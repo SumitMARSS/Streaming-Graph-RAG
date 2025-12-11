@@ -4,7 +4,11 @@
 Streaming-KG is a real-time Knowledge Graph pipeline that ingests unstructured data (like news articles), extracts structured knowledge using LLMs, and stores it in a graph database (Neo4j). The system enables advanced search, reasoning, and visualization over continuously updated knowledge.
 
 ## Complete Flow Diagram
+### Source 1
 <img width="3511" height="1057" alt="Flow_Diagram" src="https://github.com/user-attachments/assets/939b0e35-a8dc-432a-a3e0-944eb6ae49aa" />
+
+### Source 2
+<img width="1358" height="1834" alt="image" src="https://github.com/user-attachments/assets/d7c45e16-2346-42b4-9ef4-bf487dd12628" />
 
 
 ## What is RAG (Retrieval-Augmentation-Generation)?
